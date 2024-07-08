@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const ValidateOtp = () => {
     const [qrCodeUrl, setQrCodeUrl] = useState('');
@@ -19,9 +20,9 @@ const ValidateOtp = () => {
             console.log("Data received from the API:", data);
             // setQrCodeUrl(data.qrCodeUrl);
             if(data) {
-                alert("User verified successfully");
+                toast("User verified successfully");
             }else{
-                alert("User not verified, invalid otp")
+                toast.error("User not verified, invalid otp")
             }
         })
         .catch(error => {

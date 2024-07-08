@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
 const AddOtp = () => {
     const [qrCodeUrl, setQrCodeUrl] = useState('');
@@ -16,7 +17,7 @@ const AddOtp = () => {
         .then(async (response) => {
             const data = await response.json();
             if(data.code===500) {
-                alert(data.message.error || "Something went wrong, Please try again later");
+                toast(data.message.error || "Something went wrong, Please try again later");
             }
             console.log("data got from the api " , data);
             setQrCodeUrl(data.qrCodeUrl); 
@@ -24,7 +25,7 @@ const AddOtp = () => {
         .catch(error => {
             console.error("error in fetching the api " , error , error.message);
             if(error.message) {
-                alert(error.message);
+                toast(error.message);
             }
         })
     }
